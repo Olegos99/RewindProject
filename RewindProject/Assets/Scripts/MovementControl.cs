@@ -34,6 +34,8 @@ public class MovementControl : MonoBehaviour
     bool jumpedOnce = false;
     bool jumpedTwice = false;
 
+    private float Starting2DMovmentZAxisPosition;
+
 
     //public bool WASDmovement;
     void Start()
@@ -42,6 +44,7 @@ public class MovementControl : MonoBehaviour
         {
             Debug.Log("Choose type of movement");
         }
+        Starting2DMovmentZAxisPosition = transform.position.z;
     }
 
 
@@ -67,9 +70,18 @@ public class MovementControl : MonoBehaviour
         else
         {
             move = transform.right * x;
+
+            if (transform.position.z != Starting2DMovmentZAxisPosition)
+            {
+                Vector3 var = new Vector3 (transform.position.x, transform.position.y, Starting2DMovmentZAxisPosition);
+                //Controller.Move(var);
+                //Controller.
+                //Controller.transform.position = var;
+            }
         }
 
         Controller.Move(move * speed * Time.deltaTime);//main movement vector
+
 
 
         if (DoubleJump)
