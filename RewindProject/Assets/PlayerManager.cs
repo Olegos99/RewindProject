@@ -8,8 +8,14 @@ public class PlayerManager : MonoBehaviour
     CharacterController cc;
     public Vector3 StartingPosition;
     RecordPlayerPositions RecordPlayerPositions;
+    public RewindCloneCreation RewindCloneCreation;
     public bool Dead = false;
 
+    public static PlayerManager instance;
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -35,6 +41,7 @@ public class PlayerManager : MonoBehaviour
         cc.enabled = true;
         //Player.transform.position = new Vector3(StartingPosition.x, StartingPosition.y,0);
         RecordPlayerPositions.ResetRecording();
+        RewindCloneCreation.DestroyClone();
         Dead = false;
     }
 }

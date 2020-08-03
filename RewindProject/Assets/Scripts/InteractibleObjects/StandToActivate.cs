@@ -6,8 +6,18 @@ public class StandToActivate : MonoBehaviour
 {
     public GameObject GameObjectToActivate;
 
+    public bool DeactivateGameObject = false;
+
     public bool PlayerCurrentlyInZone = false;
     public bool CloneCurrentlyInZone = false;
+
+    private void Start()
+    {
+        if (DeactivateGameObject)
+        {
+            GameObjectToActivate.SetActive(false);
+        }
+    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -38,24 +48,62 @@ public class StandToActivate : MonoBehaviour
     {
         if(Activate)
         {
-            GameObjectToActivate.SetActive(false);
+            if(!DeactivateGameObject)
+            {
+                GameObjectToActivate.SetActive(false);
+            }
+            else
+            {
+                GameObjectToActivate.SetActive(true);
+            }
         }
         else
         {
-            GameObjectToActivate.SetActive(true);
+            if (!DeactivateGameObject)
+            {
+                GameObjectToActivate.SetActive(true);
+            }
+            else
+            {
+                GameObjectToActivate.SetActive(false);
+            }
         }
             
     }
     // Update is called once per frame
     void Update()
     {
-        if (PlayerCurrentlyInZone || CloneCurrentlyInZone && GameObjectToActivate.activeInHierarchy)
+        if (CloneCurrentlyInZone == true)
         {
-            ActivationControll(true);
+            if (!RewindCloneManager.instance)
+            {
+                CloneCurrentlyInZone = false;
+            }
         }
-        else if (!GameObjectToActivate.activeInHierarchy && !PlayerCurrentlyInZone && !CloneCurrentlyInZone)
+
+
+        if (!DeactivateGameObject)
         {
-            ActivationControll(false);
+            if (PlayerCurrentlyInZone || CloneCurrentlyInZone && GameObjectToActivate.activeInHierarchy)
+            {
+                ActivationControll(true);
+            }
+            if (!GameObjectToActivate.activeInHierarchy && !PlayerCurrentlyInZone && !CloneCurrentlyInZone)
+            {
+                ActivationControll(false);
+            }
         }
+        else
+        {
+            if (PlayerCurrentlyInZone || CloneCurrentlyInZone && !GameObjectToActivate.activeInHierarchy)
+            {
+                ActivationControll(true);
+            }
+            if (GameObjectToActivate.activeInHierarchy && !PlayerCurrentlyInZone && !CloneCurrentlyInZone)
+            {
+                ActivationControll(false);
+            }
+        }
+
     }
 }

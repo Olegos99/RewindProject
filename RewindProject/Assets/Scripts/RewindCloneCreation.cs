@@ -11,6 +11,8 @@ public class RewindCloneCreation : MonoBehaviour
     public List<Vector2> PlayerPositions;
     public List<bool> PlayerEpressing;
 
+    public ManaUI m_ManaUI;
+
     GameObject clone;
 
     [Range(1,5)]
@@ -21,24 +23,30 @@ public class RewindCloneCreation : MonoBehaviour
     private float time;
 
     public bool CloneIsPressingE;
-    // Update is called once per frame
+
+    private int RecordedFramesCount;
+
+
+    public static RewindCloneCreation instance;
+    private void Awake()
+    {
+        instance = this;
+    }
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.R) && clone == null && !RewindClooneCooldownCoorutineIsRunning)
         {
             PlayerPositions = new List<Vector2>(Player.GetComponentInChildren<RecordPlayerPositions>().m_PlayerPositions);
             PlayerEpressing = new List<bool>(Player.GetComponentInChildren<RecordPlayerPositions>().m_PlayerPressE);
-            
+
+            RecordedFramesCount = PlayerPositions.Count;
+
             clone = Instantiate(RewindClone, Player.transform.position, Quaternion.identity);
             Debug.Log("R was pressed");
         }
         else if(Input.GetKeyDown(KeyCode.R) && clone != null)
         {
-            Destroy(clone);
-            StartCoroutine("RewindClooneCooldownCoorutine");
-            PlayerPositions.Clear();
-            PlayerEpressing.Clear();
-            CloneIsPressingE = false;
+            DestroyClone();
         }
     }
 
@@ -46,6 +54,7 @@ public class RewindCloneCreation : MonoBehaviour
     {
         if(clone)
         {
+            
             if (PlayerPositions.Count > 0)
             {
                 clone.transform.position = PlayerPositions.Last();
@@ -58,12 +67,19 @@ public class RewindCloneCreation : MonoBehaviour
             }
             else
             {
-                StartCoroutine("RewindClooneCooldownCoorutine");
-                Destroy(clone);
-                PlayerEpressing.Clear();
-                PlayerPositions.Clear();
+                DestroyClone();
             }
+            m_ManaUI.SetManaUIConterClocwise(RecordedFramesCount, PlayerPositions.Count);
         }
+    }
+
+    public void DestroyClone()
+    {
+        Destroy(clone);
+        StartCoroutine("RewindClooneCooldownCoorutine");
+        PlayerPositions.Clear();
+        PlayerEpressing.Clear();
+        CloneIsPressingE = false;
     }
 
     IEnumerator RewindClooneCooldownCoorutine()
@@ -73,6 +89,7 @@ public class RewindCloneCreation : MonoBehaviour
         while (time > 0)
         {
             time -= Time.deltaTime;
+            m_ManaUI.SetManaUIClocwise(RewindClooneCooldown, time);
             yield return new WaitForSeconds(Time.deltaTime);
         }
         time = 0;

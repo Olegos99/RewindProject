@@ -6,7 +6,9 @@ public class PressEtoActivate : MonoBehaviour
 {
     public GameObject GameObjectToActivate;
 
-    public RewindCloneCreation RewindCloneCreation;
+    RewindCloneCreation RewindCloneCreation;
+
+    public ButtonTimeUI buttonTimeUI;
 
     public bool HaveActiveTimeLimit;
     public float TimeLimit;
@@ -17,6 +19,13 @@ public class PressEtoActivate : MonoBehaviour
 
 
     private bool CoorutineIsRunning = false;
+
+    private float time;
+
+    private void Start()
+    {
+        RewindCloneCreation = RewindCloneCreation.instance;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -71,8 +80,21 @@ public class PressEtoActivate : MonoBehaviour
     IEnumerator ActivateWithTimeLimit(float someTime)
     {
         CoorutineIsRunning = true;
+        //GameObjectToActivate.SetActive(false);
+        //yield return new WaitForSeconds(someTime);
+        //GameObjectToActivate.SetActive(true);
+
         GameObjectToActivate.SetActive(false);
-        yield return new WaitForSeconds(someTime);
+
+        float TTTime = someTime;
+        time = someTime;
+        while (time > 0)
+        {
+            time -= Time.deltaTime;
+            buttonTimeUI.SetTimerUIClocwise(TTTime, time);
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        time = 0;
         GameObjectToActivate.SetActive(true);
         CoorutineIsRunning = false;
     }
