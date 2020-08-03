@@ -342,6 +342,7 @@ MonoBehaviour:
   Player: {fileID: 874978868}
   PlayerPositions: []
   PlayerEpressing: 
+  RewindClooneCooldown: 3
   CloneIsPressingE: 0
 --- !u!4 &162863397
 Transform:
