@@ -70,4 +70,11 @@ public class RecordPlayerPositions : MonoBehaviour
         }
         CurrentRecordedFrames = m_PlayerPositions.Count;
     }
+
+    public void ResetRecording()
+    {
+        m_PlayerPositions.Clear();
+        m_PlayerPressE.Clear();
+        CurrentRecordedFrames = 0;
+    }
 }

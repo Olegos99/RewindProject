@@ -32,7 +32,6 @@ public class RewindCloneCreation : MonoBehaviour
             PlayerEpressing.Clear();
             CloneIsPressingE = false;
         }
-
     }
 
     private void FixedUpdate()
