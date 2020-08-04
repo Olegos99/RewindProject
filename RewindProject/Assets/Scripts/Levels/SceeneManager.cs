@@ -24,13 +24,33 @@ public class SceeneManager : MonoBehaviour
             return;
         }
 
-        DontDestroyOnLoad(gameObject);
+    //CurrentSceneNumber
+    foreach(string s in Levels)
+        {
+            if(s == SceneManager.GetActiveScene().name)
+            {
+                for(int i = 0; i < Levels.Length; i ++)
+                {
+                    if(s == Levels[i])
+                    {
+                        CurrentSceneNumber = i;
+                    }
+                }
+            }
+        }
+
+
+
+    DontDestroyOnLoad(gameObject);
     }
 
 
 
     public void LoadSceeneNumber(int LevelNumber)
     {
+        AudioManager.instanse.StopAllSounds();
+
+
         SceneManager.LoadScene(Levels[LevelNumber], LoadSceneMode.Single);
         CurrentSceneNumber = LevelNumber;
     }

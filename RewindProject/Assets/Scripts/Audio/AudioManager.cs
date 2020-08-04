@@ -41,4 +41,40 @@ public class AudioManager : MonoBehaviour
         }
         s.sourse.Play();
     }
+    public void Stop(string name) //function for external call it should be: FindGameObjectOfType<AudioManager>.Play("name_of_sound")
+    {
+        Sound s = Array.Find(Sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.Log("The Sound with name: " + name + " wasn't found.");
+            return;
+        }
+        s.sourse.Stop();
+    }
+
+    public void StopAllSounds() //function for external call it should be: FindGameObjectOfType<AudioManager>.Play("name_of_sound")
+    {
+        foreach (Sound s in Sounds)//set all values for variables from inspector
+        {
+            if(s.name != "MainTheme")
+            {
+                s.sourse.Stop();
+            }
+
+        }
+ 
+    }
+
+    public bool IsSoundIsPlayingNow(string name)
+    {
+        Sound s = Array.Find(Sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.Log("The Sound with name: " + name + " wasn't found.");
+            return false;
+        }
+
+        return s.sourse.isPlaying;
+    }
+
 }

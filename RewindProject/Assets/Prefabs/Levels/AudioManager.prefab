@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8993236631847571379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8993236631847571377}
+  - component: {fileID: 8993236631847571378}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8993236631847571377
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8993236631847571379}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.652033, y: 3.8844948, z: 7.3750324}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8993236631847571378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8993236631847571379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df46d3a625243e346ad8ef4ad4733fd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sounds:
+  - clip: {fileID: 8300000, guid: 87802582f0fefd44c9fc2bf62a91d5fa, type: 3}
+    name: Jump
+    volume: 0.5
+    pitch: 1.54
+    loop: 0
+    sourse: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 742f3c68e9ba20b42b3e481271a3b2d3, type: 3}
+    name: RewindReady
+    volume: 0.5
+    pitch: 1.54
+    loop: 0
+    sourse: {fileID: 0}
+  - clip: {fileID: 8300000, guid: e6fc040a74236604094983237e397320, type: 3}
+    name: RewindEnds
+    volume: 0.5
+    pitch: 1.51
+    loop: 0
+    sourse: {fileID: 0}
+  - clip: {fileID: 8300000, guid: bfb61a8cfc7dcce4ab047a2e92eaf9a0, type: 3}
+    name: Death
+    volume: 0.5
+    pitch: 1.53
+    loop: 0
+    sourse: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 85b07dd95a7f4ee4297ad847f021c896, type: 3}
+    name: RewindInColdown
+    volume: 0.103
+    pitch: 1.49
+    loop: 1
+    sourse: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 24af773376693dd42b2932400ce55e69, type: 3}
+    name: RewindInWorking
+    volume: 0.08
+    pitch: 1.49
+    loop: 1
+    sourse: {fileID: 0}

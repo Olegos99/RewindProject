@@ -55,7 +55,10 @@ public class RewindCloneCreation : MonoBehaviour
     {
         if(clone)
         {
-            
+            if (!AudioManager.instanse.IsSoundIsPlayingNow("RewindInWorking"))
+            {
+                AudioManager.instanse.Play("RewindInWorking");
+            }
             if (PlayerPositions.Count > 0)
             {
                 clone.transform.position = PlayerPositions.Last();
@@ -76,6 +79,8 @@ public class RewindCloneCreation : MonoBehaviour
 
     public void DestroyClone()
     {
+        AudioManager.instanse.Stop("RewindInWorking");
+        AudioManager.instanse.Play("RewindEnds");
         Destroy(clone);
         StartCoroutine("RewindClooneCooldownCoorutine");
         PlayerPositions.Clear();
@@ -87,6 +92,7 @@ public class RewindCloneCreation : MonoBehaviour
     {
         RewindClooneCooldownCoorutineIsRunning = true;
         time = RewindClooneCooldown;
+        AudioManager.instanse.Play("RewindInColdown");
         while (time > 0)
         {
             time -= Time.deltaTime;
@@ -94,6 +100,8 @@ public class RewindCloneCreation : MonoBehaviour
             yield return new WaitForSeconds(Time.deltaTime);
         }
         time = 0;
+        AudioManager.instanse.Stop("RewindInColdown");
+        AudioManager.instanse.Play("RewindReady");
         RewindClooneCooldownCoorutineIsRunning = false;
     }
 }
