@@ -33,6 +33,7 @@ public class RewindCloneCreation : MonoBehaviour
     {
         instance = this;
     }
+
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.R) && clone == null && !RewindClooneCooldownCoorutineIsRunning)

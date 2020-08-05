@@ -13,9 +13,11 @@ public class PressEtoActivate : MonoBehaviour
     public bool HaveActiveTimeLimit;
     public float TimeLimit;
 
+    public bool AllowPlayerReuseButtonOnCoorutineRuning;
 
-    public bool PlayerCurrentlyInZone = false;
-    public bool CloneCurrentlyInZone = false;
+
+    private bool PlayerCurrentlyInZone = false;
+    private bool CloneCurrentlyInZone = false;
 
 
     private bool CoorutineIsRunning = false;
@@ -74,6 +76,13 @@ public class PressEtoActivate : MonoBehaviour
         else if(!CoorutineIsRunning)
         {
             StartCoroutine(ActivateWithTimeLimit(TimeLimit));
+        }
+        else if(CoorutineIsRunning && AllowPlayerReuseButtonOnCoorutineRuning)
+        {
+            //StopCoroutine(ActivateWithTimeLimit(TimeLimit));
+            StopAllCoroutines();
+            StartCoroutine(ActivateWithTimeLimit(TimeLimit));
+            time = TimeLimit;
         }
     }
 
