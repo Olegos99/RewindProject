@@ -13,7 +13,7 @@ public class RewindCloneCreation : MonoBehaviour
 
     public ManaUI m_ManaUI;
 
-    GameObject clone;
+    public GameObject clone;
 
     [Range(1,5)]
     public float RewindClooneCooldown = 1f;

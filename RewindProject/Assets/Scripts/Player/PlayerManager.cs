@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    GameObject Player;
+    private GameObject Player;
+    public Transform PlayerTransform;
     public Transform CameraTargetTransform;
     CharacterController cc;
     public Vector3 StartingPosition;
@@ -21,6 +22,7 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         Player = this.gameObject;
+        PlayerTransform = Player.transform;
         cc = Player.GetComponent<CharacterController>();
         StartingPosition = Player.transform.position;
         RewindCloneCreation = RewindCloneCreation.instance;
