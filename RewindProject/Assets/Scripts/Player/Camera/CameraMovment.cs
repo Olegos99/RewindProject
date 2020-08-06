@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class CameraMovment : MonoBehaviour
 {
+    public static CameraMovment instance;
+
     Transform CameraTargetPosition;
     float DistanceToTarget;
 
     PlayerManager PlayerManager;
+
+
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
         PlayerManager = PlayerManager.instance;
@@ -27,5 +37,15 @@ public class CameraMovment : MonoBehaviour
         {
             //transform.position = new Vector3(CameraTargetPosition.position.x, CameraTargetPosition.position.y, CameraTargetPosition.position.z);
         }
+    }
+
+    public void ResetCameraTargetPositionToDeathView()
+    {
+        CameraTargetPosition = PlayerManager.SecondCameraTargetTransform;
+    }
+
+    public void ResetCameraTargetPositionToNormalView()
+    {
+        CameraTargetPosition = PlayerManager.CameraTargetTransform;
     }
 }

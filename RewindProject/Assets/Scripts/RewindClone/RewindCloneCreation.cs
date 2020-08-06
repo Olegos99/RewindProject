@@ -89,6 +89,15 @@ public class RewindCloneCreation : MonoBehaviour
         CloneIsPressingE = false;
     }
 
+    public void OnDeath()
+    {
+        StopAllCoroutines();
+        AudioManager.instanse.Stop("RewindInWorking");
+        AudioManager.instanse.Stop("RewindEnds");
+        AudioManager.instanse.Stop("RewindInColdown");
+        m_ManaUI.SetManaUIClocwise(0, 1);
+    }
+
     IEnumerator RewindClooneCooldownCoorutine()
     {
         RewindClooneCooldownCoorutineIsRunning = true;
@@ -105,4 +114,6 @@ public class RewindCloneCreation : MonoBehaviour
         AudioManager.instanse.Play("RewindReady");
         RewindClooneCooldownCoorutineIsRunning = false;
     }
+
+
 }

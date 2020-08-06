@@ -5,12 +5,14 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject PauseMenuUI;
+    public GameObject Hint;
 
     public bool TheGameIsPaused = false;
-    // Start is called before the first frame update
-    void Start()
+
+    public static PauseMenu instance;
+    private void Awake()
     {
-        
+        instance = this;
     }
 
     // Update is called once per frame
@@ -39,6 +41,7 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         AudioManager.instanse.ResumePausedSounds();
+        Hint.SetActive(false);
         PauseMenuUI.SetActive(false);
     }
 
@@ -46,5 +49,12 @@ public class PauseMenu : MonoBehaviour
     {
         ResumeGame();
         SceeneManager.instance.LoadSceeneNumber(0);
+    }
+
+    public void ActivateHint()
+    {
+        Time.timeScale = 0;
+        AudioManager.instanse.PauseAllSounds();
+        Hint.SetActive(true);
     }
 }

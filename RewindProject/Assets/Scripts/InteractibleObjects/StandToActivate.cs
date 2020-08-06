@@ -23,7 +23,6 @@ public class StandToActivate : MonoBehaviour
     {
         if (other.name == "Player")
         {
-            Debug.Log("Press E to activate");
             PlayerCurrentlyInZone = true;
         }
         if (other.name == "RewindClone(Clone)")
@@ -78,6 +77,14 @@ public class StandToActivate : MonoBehaviour
             if (!RewindCloneManager.instance)
             {
                 CloneCurrentlyInZone = false;
+            }
+        }
+
+        if (PlayerCurrentlyInZone == true)
+        {
+            if (PlayerManager.instance.transform.position == PlayerManager.instance.StartingPosition)
+            {
+                PlayerCurrentlyInZone = false;
             }
         }
 

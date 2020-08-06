@@ -8,7 +8,7 @@ public class Spikes : MonoBehaviour
     {
         if (other.name == "Player")
         {
-            other.gameObject.GetComponent<PlayerManager>().Dead = true;
+            other.gameObject.GetComponent<PlayerManager>().DeadFromSpikes = true;
         }
     }
 }

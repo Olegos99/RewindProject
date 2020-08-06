@@ -128,4 +128,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 111630b2ddd17d746b0320f48c50167c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraTargetPosition: {fileID: 0}

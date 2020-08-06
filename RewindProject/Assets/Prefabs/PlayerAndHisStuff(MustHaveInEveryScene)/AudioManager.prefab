@@ -44,39 +44,73 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sounds:
-  - clip: {fileID: 8300000, guid: 87802582f0fefd44c9fc2bf62a91d5fa, type: 3}
+  - clip: {fileID: 8300000, guid: 56d1fbbeee5ad7046995a355dcab45af, type: 3}
     name: Jump
     volume: 0.5
-    pitch: 1.54
+    pitch: 1
     loop: 0
+    WasPaused: 0
     sourse: {fileID: 0}
   - clip: {fileID: 8300000, guid: 742f3c68e9ba20b42b3e481271a3b2d3, type: 3}
     name: RewindReady
     volume: 0.5
     pitch: 1.54
     loop: 0
+    WasPaused: 0
     sourse: {fileID: 0}
   - clip: {fileID: 8300000, guid: e6fc040a74236604094983237e397320, type: 3}
     name: RewindEnds
     volume: 0.5
     pitch: 1.51
     loop: 0
+    WasPaused: 0
     sourse: {fileID: 0}
   - clip: {fileID: 8300000, guid: bfb61a8cfc7dcce4ab047a2e92eaf9a0, type: 3}
     name: Death
     volume: 0.5
-    pitch: 1.53
+    pitch: 1
     loop: 0
+    WasPaused: 0
     sourse: {fileID: 0}
   - clip: {fileID: 8300000, guid: 85b07dd95a7f4ee4297ad847f021c896, type: 3}
     name: RewindInColdown
-    volume: 0.103
-    pitch: 1.49
+    volume: 0.131
+    pitch: 1
     loop: 1
+    WasPaused: 0
     sourse: {fileID: 0}
-  - clip: {fileID: 8300000, guid: 24af773376693dd42b2932400ce55e69, type: 3}
+  - clip: {fileID: 8300000, guid: f0f1c2ee6a3a3eb44a169240113aafd2, type: 3}
     name: RewindInWorking
-    volume: 0.08
-    pitch: 1.49
+    volume: 0.248
+    pitch: 1
     loop: 1
+    WasPaused: 0
+    sourse: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 90016fa8b8d38ff4583235994631d619, type: 3}
+    name: Wow
+    volume: 0.48
+    pitch: 1
+    loop: 0
+    WasPaused: 0
+    sourse: {fileID: 0}
+  - clip: {fileID: 8300000, guid: e0b842dc4b0bafd43a09edfab8fbea6e, type: 3}
+    name: Punch
+    volume: 0.487
+    pitch: 1
+    loop: 0
+    WasPaused: 0
+    sourse: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 0c330022c93f1cc4bab3de45300991c4, type: 3}
+    name: Denied
+    volume: 0.487
+    pitch: 1
+    loop: 0
+    WasPaused: 0
+    sourse: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 54026d1a6dd20af4c993af5b2ab9f976, type: 3}
+    name: BossIsWatching
+    volume: 0.487
+    pitch: 1
+    loop: 0
+    WasPaused: 0
     sourse: {fileID: 0}

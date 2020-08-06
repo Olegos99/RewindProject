@@ -6,11 +6,16 @@ public class FinishLevel : MonoBehaviour
 {
     SceeneManager SceeneManager;
 
+    bool FinishLevelFunctionCoorutineIsRuning = false;
+
+    float Time = 2f;
+
     private void OnTriggerStay(Collider other)
     {
-        if (other.name == "Player")
+        if (other.name == "Player" && !FinishLevelFunctionCoorutineIsRuning)
         {
-            FinishLevelFunction();
+            // FinishLevelFunction();
+            StartCoroutine("FinishLevelFunction");
         }
     }
 
@@ -20,16 +25,40 @@ public class FinishLevel : MonoBehaviour
     }
 
 
-    private void FinishLevelFunction()
+    //private void FinishLevelFunction()
+    //{
+    //    Debug.Log("Level is Finished");
+    //    //some sound
+
+    //    // animation on level finished + particle system
+
+    //    // SceeneManager next level load
+    //    Debug.Log("Trying to open Scene number " + SceeneManager.CurrentSceneNumber + 1);
+
+
+    //    AudioManager.instanse.Play("Wow");
+    //    SceeneManager.LoadSceeneNumber(SceeneManager.CurrentSceneNumber + 1); // loading nextSceene
+
+    //}
+
+
+
+    IEnumerator FinishLevelFunction()
     {
-        Debug.Log("Level is Finished");
-        //some sound
+        FinishLevelFunctionCoorutineIsRuning = true;
 
-        // animation on level finished + particle system
+        float time = Time;
 
-        // SceeneManager next level load
-        Debug.Log("Trying to open Scene number " + SceeneManager.CurrentSceneNumber + 1);
+        CameraMovment.instance.ResetCameraTargetPositionToDeathView();
+
+        //player partical system
+        AudioManager.instanse.StopAllSounds();
+        ParticleSystemController.instance.ActivateParticleSystem(1, time);
+        AudioManager.instanse.Play("Wow");
+        yield return new WaitForSeconds(time);
+
+
+        FinishLevelFunctionCoorutineIsRuning = false;
         SceeneManager.LoadSceeneNumber(SceeneManager.CurrentSceneNumber + 1); // loading nextSceene
-
     }
 }

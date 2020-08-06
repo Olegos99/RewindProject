@@ -10,7 +10,7 @@ public class BossBehaviour : MonoBehaviour
     [Range(1f, 10f)]
     public float AcseptibleDistance = 3f;
 
-    public List<bool> Results;
+    //public List<bool> Results;
 
     RewindCloneCreation RewindCloneCreation;
     PlayerManager PlayerManager;
@@ -24,6 +24,8 @@ public class BossBehaviour : MonoBehaviour
 
     bool IsSeaking = false;
     bool BossCheckingPlayerCoorutineIsRunning = false;
+
+    public float TimeSeen = 0;
 
     private void Start()
     {
@@ -64,31 +66,38 @@ public class BossBehaviour : MonoBehaviour
 
         float time = TimeToCheck;
 
-        Results.Clear();
+        AudioManager.instanse.Play("BossIsWatching");
 
-        while(time > 0)
+        // Results.Clear();
+
+        while (time > 0)
         {
             if(DistanseBetwenPlayerAndClone > AcseptibleDistance || DistanseBetwenPlayerAndClone < 0)
             {
-                Results.Add(false);
+               // Results.Add(false);
             }
             else
             {
-                Results.Add(true);
+                TimeSeen += Time.deltaTime;
+                //Results.Add(true);
             }
             yield return new WaitForSeconds(Time.deltaTime);
             time -= Time.deltaTime;
         }
 
-
-        //function to check recults and acordingly set right animation
-        m_Animator.SetTrigger("CloseEye");
-
-        //m_Animator.SetTrigger("AttackPlayer");
-
-        //        Results.Clear();
+        if(TimeSeen/TimeToCheck >= 0.5f)
+        {
+            m_Animator.SetTrigger("CloseEye");
+        }
+        else
+        {
+            m_Animator.SetTrigger("AttackPlayer");
+            PlayerManager.instance.DeadFromBoss = true;
+        }
+        TimeSeen = 0;
 
         IsSeaking = false;
         BossCheckingPlayerCoorutineIsRunning = false;
     }
+
 }

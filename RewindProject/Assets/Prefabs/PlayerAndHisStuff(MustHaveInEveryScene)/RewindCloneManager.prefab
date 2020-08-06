@@ -49,5 +49,6 @@ MonoBehaviour:
   PlayerPositions: []
   PlayerEpressing: 
   m_ManaUI: {fileID: 0}
+  clone: {fileID: 0}
   RewindClooneCooldown: 2
   CloneIsPressingE: 0

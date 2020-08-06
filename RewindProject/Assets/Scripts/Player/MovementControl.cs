@@ -36,6 +36,8 @@ public class MovementControl : MonoBehaviour
 
     private float Starting2DMovmentZAxisPosition;
 
+    public bool MovementEnabled = true;
+
 
     //public bool WASDmovement;
     void Start()
@@ -51,68 +53,72 @@ public class MovementControl : MonoBehaviour
 
     void Update()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask); //creatind invisible sphere to check if it touching the "groundMask" layer
-
-        if(isGrounded && velocity.y < 0) // to avoid adding forse vector every frame while grounded
+        if (MovementEnabled)
         {
-            velocity.y = -2f;
-        }
+            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask); //creatind invisible sphere to check if it touching the "groundMask" layer
 
-        float x = Input.GetAxis("Horizontal");//multiplatform input recive
-        float z = Input.GetAxis("Vertical");
-
-        Vector3 move;
-
-        if (Movment3D)
-        {
-             move = transform.right * x + transform.forward * z;
-        }
-        else
-        {
-            move = transform.right * x;
-
-            if (transform.position.z != Starting2DMovmentZAxisPosition)
+            if (isGrounded && velocity.y < 0) // to avoid adding forse vector every frame while grounded
             {
-                Vector3 var = new Vector3 (transform.position.x, transform.position.y, Starting2DMovmentZAxisPosition);
-                //Controller.Move(var);
-                //Controller.
-                //Controller.transform.position = var;
+                velocity.y = -2f;
             }
-        }
 
-        Controller.Move(move * speed * Time.deltaTime);//main movement vector
+            float x = Input.GetAxis("Horizontal");//multiplatform input recive
+            float z = Input.GetAxis("Vertical");
 
+            Vector3 move;
 
-
-        if (DoubleJump)
-        {
-
-            if (Input.GetButtonDown("Jump") && isGrounded)
+            if (Movment3D)
             {
-                velocity.y += Mathf.Sqrt(jumpHeight * -2f * gravity);
-                StartCoroutine("WhaitBeforeNextJump");
+                move = transform.right * x + transform.forward * z;
             }
-            if (Input.GetButtonDown("Jump") && jumpedOnce && !jumpedTwice)
+            else
             {
-                velocity.y += Mathf.Sqrt(jumpHeight * -2f * gravity);
-                jumpedTwice = true;
+                move = transform.right * x;
+
+                if (transform.position.z != Starting2DMovmentZAxisPosition)
+                {
+                    Vector3 var = new Vector3(transform.position.x, transform.position.y, Starting2DMovmentZAxisPosition);
+                    //Controller.Move(var);
+                    //Controller.
+                    //Controller.transform.position = var;
+                }
             }
-            if(isGrounded)
+
+
+            Controller.Move(move * speed * Time.deltaTime);//main movement vector
+
+
+
+            if (DoubleJump)
             {
-               jumpedOnce = false;
-               jumpedTwice = false;
+
+                if (Input.GetButtonDown("Jump") && isGrounded)
+                {
+                    velocity.y += Mathf.Sqrt(jumpHeight * -2f * gravity);
+                    StartCoroutine("WhaitBeforeNextJump");
+                }
+                if (Input.GetButtonDown("Jump") && jumpedOnce && !jumpedTwice)
+                {
+                    velocity.y += Mathf.Sqrt(jumpHeight * -2f * gravity);
+                    jumpedTwice = true;
+                }
+                if (isGrounded)
+                {
+                    jumpedOnce = false;
+                    jumpedTwice = false;
+                }
             }
-        }
-        else
-        {
-            if (Input.GetButtonDown("Jump") && isGrounded)
+            else
             {
-                velocity.y += Mathf.Sqrt(jumpHeight * -2f * gravity);
+                if (Input.GetButtonDown("Jump") && isGrounded)
+                {
+                    velocity.y += Mathf.Sqrt(jumpHeight * -2f * gravity);
+                }
             }
-        }
 
             velocity.y += gravity * Time.deltaTime; //adding velocity to axis y (gravity)
             Controller.Move(velocity * Time.deltaTime); //acceleration a = f * (time^2)
+        }
         
     }
 
