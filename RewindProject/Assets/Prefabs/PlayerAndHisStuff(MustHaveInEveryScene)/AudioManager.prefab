@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sounds:
-  - clip: {fileID: 8300000, guid: 56d1fbbeee5ad7046995a355dcab45af, type: 3}
+  - clip: {fileID: 8300000, guid: 78b72e30d4769f643bcbb0d5bb55fe2b, type: 3}
     name: Jump
     volume: 0.5
     pitch: 1
@@ -74,21 +74,21 @@ MonoBehaviour:
     sourse: {fileID: 0}
   - clip: {fileID: 8300000, guid: 85b07dd95a7f4ee4297ad847f021c896, type: 3}
     name: RewindInColdown
-    volume: 0.131
+    volume: 0.06
     pitch: 1
     loop: 1
     WasPaused: 0
     sourse: {fileID: 0}
   - clip: {fileID: 8300000, guid: f0f1c2ee6a3a3eb44a169240113aafd2, type: 3}
     name: RewindInWorking
-    volume: 0.248
+    volume: 0.159
     pitch: 1
     loop: 1
     WasPaused: 0
     sourse: {fileID: 0}
   - clip: {fileID: 8300000, guid: 90016fa8b8d38ff4583235994631d619, type: 3}
     name: Wow
-    volume: 0.48
+    volume: 0.718
     pitch: 1
     loop: 0
     WasPaused: 0
@@ -112,5 +112,12 @@ MonoBehaviour:
     volume: 0.487
     pitch: 1
     loop: 0
+    WasPaused: 0
+    sourse: {fileID: 0}
+  - clip: {fileID: 8300000, guid: b703a4a5b418dab47b36ceea9be2877e, type: 3}
+    name: MainTheme
+    volume: 0.398
+    pitch: 1
+    loop: 1
     WasPaused: 0
     sourse: {fileID: 0}

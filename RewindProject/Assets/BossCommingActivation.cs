@@ -19,7 +19,7 @@ public class BossCommingActivation : MonoBehaviour
     {
             if (other.name == "Player" && !WasActivatedOnce)
             {
-            WasActivatedOnce = true;
+                WasActivatedOnce = true;
                 Boss.GetComponent<Animator>().SetTrigger("Lvl1activation01");
             }
     }

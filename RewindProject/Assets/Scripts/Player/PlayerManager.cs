@@ -111,6 +111,11 @@ public class PlayerManager : MonoBehaviour
 
     private void ResetPlayerToStart()
     {
+        StopAllCoroutines();
+        DeadFromSpikesCoorutineIsRuning = false;
+        DeadFromBossCoorutineIsRuning = false;
+        BossBehaviour.instanse.Reset();
+        AudioManager.instanse.StopAllSounds();
         Debug.Log("Reseting player");
         cc.enabled = false;
         Player.transform.position = StartingPosition;

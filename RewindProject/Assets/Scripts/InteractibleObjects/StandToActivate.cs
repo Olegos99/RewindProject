@@ -82,7 +82,8 @@ public class StandToActivate : MonoBehaviour
 
         if (PlayerCurrentlyInZone == true)
         {
-            if (PlayerManager.instance.transform.position == PlayerManager.instance.StartingPosition)
+            //if (PlayerManager.instance.transform.position == PlayerManager.instance.StartingPosition)
+            if (Vector3.Distance(PlayerManager.instance.transform.position, transform.position) > 5f)
             {
                 PlayerCurrentlyInZone = false;
             }

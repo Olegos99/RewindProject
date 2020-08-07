@@ -27,6 +27,13 @@ public class BossBehaviour : MonoBehaviour
 
     public float TimeSeen = 0;
 
+    public static BossBehaviour instanse;
+
+    private void Awake()
+    {
+        instanse = this;
+    }
+
     private void Start()
     {
       //  PlayerTransform = PlayerManager.instance.PlayerTransform;
@@ -98,6 +105,14 @@ public class BossBehaviour : MonoBehaviour
 
         IsSeaking = false;
         BossCheckingPlayerCoorutineIsRunning = false;
+    }
+
+    public void Reset()
+    {
+        m_Animator.SetTrigger("Reset");
+        StopAllCoroutines();
+        BossCheckingPlayerCoorutineIsRunning = false;
+        IsSeaking = false;
     }
 
 }

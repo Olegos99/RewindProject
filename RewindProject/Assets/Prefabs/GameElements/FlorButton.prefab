@@ -138,8 +138,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.24103695, y: 0.33293587, z: 0.23987906}
-  m_Center: {x: -0.0010020483, y: 0.1366238, z: -0.005526183}
+  m_Size: {x: 0.24103695, y: 0.13678573, z: 0.23987906}
+  m_Center: {x: -0.0010020483, y: 0.038548753, z: -0.005526183}
 --- !u!114 &5945410059273511239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameObjectToActivate: {fileID: 0}
+  DeactivateGameObject: 0
   PlayerCurrentlyInZone: 0
   CloneCurrentlyInZone: 0
 --- !u!54 &5945410059273511236

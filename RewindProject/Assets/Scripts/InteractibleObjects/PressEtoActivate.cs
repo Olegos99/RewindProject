@@ -16,13 +16,15 @@ public class PressEtoActivate : MonoBehaviour
     public bool AllowPlayerReuseButtonOnCoorutineRuning;
 
 
-    private bool PlayerCurrentlyInZone = false;
-    private bool CloneCurrentlyInZone = false;
+    public bool PlayerCurrentlyInZone = false;
+    public bool CloneCurrentlyInZone = false;
 
 
     private bool CoorutineIsRunning = false;
 
     private float time;
+
+    public bool Deactivate = true;
 
     private void Start()
     {
@@ -56,7 +58,14 @@ public class PressEtoActivate : MonoBehaviour
     }
 
     private void Update()
-    {       
+    {    
+        if(PlayerCurrentlyInZone)
+        {
+            if (Vector3.Distance(PlayerManager.instance.transform.position, transform.position) > 1.5f)
+            {
+                PlayerCurrentlyInZone = false;
+            }
+        }
         if (Input.GetKeyDown(KeyCode.E) && PlayerCurrentlyInZone)
         {
             Activate();
@@ -69,20 +78,41 @@ public class PressEtoActivate : MonoBehaviour
 
     public void Activate()
     {
-        if (!HaveActiveTimeLimit)
+        if (Deactivate)
         {
-            GameObjectToActivate.SetActive(false);
+            if (!HaveActiveTimeLimit)
+            {
+                GameObjectToActivate.SetActive(false);
+            }
+            else if (!CoorutineIsRunning)
+            {
+                StartCoroutine(ActivateWithTimeLimit(TimeLimit));
+            }
+            else if (CoorutineIsRunning && AllowPlayerReuseButtonOnCoorutineRuning)
+            {
+                //StopCoroutine(ActivateWithTimeLimit(TimeLimit));
+                StopAllCoroutines();
+                StartCoroutine(ActivateWithTimeLimit(TimeLimit));
+                time = TimeLimit;
+            }
         }
-        else if(!CoorutineIsRunning)
+        else
         {
-            StartCoroutine(ActivateWithTimeLimit(TimeLimit));
-        }
-        else if(CoorutineIsRunning && AllowPlayerReuseButtonOnCoorutineRuning)
-        {
-            //StopCoroutine(ActivateWithTimeLimit(TimeLimit));
-            StopAllCoroutines();
-            StartCoroutine(ActivateWithTimeLimit(TimeLimit));
-            time = TimeLimit;
+            if (!HaveActiveTimeLimit)
+            {
+                GameObjectToActivate.SetActive(true);
+            }
+            else if (!CoorutineIsRunning)
+            {
+                StartCoroutine(ActivateWithTimeLimit(TimeLimit));
+            }
+            else if (CoorutineIsRunning && AllowPlayerReuseButtonOnCoorutineRuning)
+            {
+                //StopCoroutine(ActivateWithTimeLimit(TimeLimit));
+                StopAllCoroutines();
+                StartCoroutine(ActivateWithTimeLimit(TimeLimit));
+                time = TimeLimit;
+            }
         }
     }
 
@@ -93,7 +123,14 @@ public class PressEtoActivate : MonoBehaviour
         //yield return new WaitForSeconds(someTime);
         //GameObjectToActivate.SetActive(true);
 
-        GameObjectToActivate.SetActive(false);
+        if (Deactivate)
+        {
+            GameObjectToActivate.SetActive(false);
+        }
+        else
+        {
+            GameObjectToActivate.SetActive(true);
+        }
 
         float TTTime = someTime;
         time = someTime;
@@ -104,7 +141,14 @@ public class PressEtoActivate : MonoBehaviour
             yield return new WaitForSeconds(Time.deltaTime);
         }
         time = 0;
-        GameObjectToActivate.SetActive(true);
+        if (Deactivate)
+        {
+            GameObjectToActivate.SetActive(true);
+        }
+        else
+        {
+            GameObjectToActivate.SetActive(false);
+        }
         CoorutineIsRunning = false;
     }
 }

@@ -12,6 +12,13 @@ public class FinishLevel : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (other.name == "Player")
+        {
+            if (SceeneManager.instance.CurrentSceneNumber == 3)
+            {
+                PauseMenu.instance.WiningTheGame();
+            }
+        }
         if (other.name == "Player" && !FinishLevelFunctionCoorutineIsRuning)
         {
             // FinishLevelFunction();
@@ -49,15 +56,18 @@ public class FinishLevel : MonoBehaviour
 
         float time = Time;
 
+
+
         CameraMovment.instance.ResetCameraTargetPositionToDeathView();
 
         //player partical system
         AudioManager.instanse.StopAllSounds();
+        MovementControl.instance.MovementEnabled = false;
         ParticleSystemController.instance.ActivateParticleSystem(1, time);
         AudioManager.instanse.Play("Wow");
         yield return new WaitForSeconds(time);
 
-
+        MovementControl.instance.MovementEnabled = true;
         FinishLevelFunctionCoorutineIsRuning = false;
         SceeneManager.LoadSceeneNumber(SceeneManager.CurrentSceneNumber + 1); // loading nextSceene
     }

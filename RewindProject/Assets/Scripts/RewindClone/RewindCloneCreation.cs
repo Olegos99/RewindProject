@@ -36,19 +36,22 @@ public class RewindCloneCreation : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.R) && clone == null && !RewindClooneCooldownCoorutineIsRunning)
+        if (MovementControl.instance.MovementEnabled)
         {
-            PlayerPositions = new List<Vector2>(Player.GetComponentInChildren<RecordPlayerPositions>().m_PlayerPositions);
-            PlayerEpressing = new List<bool>(Player.GetComponentInChildren<RecordPlayerPositions>().m_PlayerPressE);
+            if (Input.GetKeyDown(KeyCode.Q) && clone == null && !RewindClooneCooldownCoorutineIsRunning)
+            {
+                PlayerPositions = new List<Vector2>(Player.GetComponentInChildren<RecordPlayerPositions>().m_PlayerPositions);
+                PlayerEpressing = new List<bool>(Player.GetComponentInChildren<RecordPlayerPositions>().m_PlayerPressE);
 
-            RecordedFramesCount = PlayerPositions.Count;
+                RecordedFramesCount = PlayerPositions.Count;
 
-            clone = Instantiate(RewindClone, Player.transform.position, Quaternion.identity);
-            Debug.Log("R was pressed");
-        }
-        else if(Input.GetKeyDown(KeyCode.R) && clone != null)
-        {
-            DestroyClone();
+                clone = Instantiate(RewindClone, Player.transform.position, Quaternion.identity);
+                Debug.Log("R was pressed");
+            }
+            else if (Input.GetKeyDown(KeyCode.Q) && clone != null)
+            {
+                DestroyClone();
+            }
         }
     }
 

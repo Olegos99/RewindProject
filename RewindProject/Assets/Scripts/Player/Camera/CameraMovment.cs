@@ -31,7 +31,7 @@ public class CameraMovment : MonoBehaviour
         if (DistanceToTarget > 0.1f)
         {
             //transform.position = Vector3.Slerp(transform.position, CameraTargetPosition.position, Mathf.Clamp(DistanceToTarget, 0, 1) * Time.deltaTime);
-            transform.position = Vector3.Slerp(transform.position, CameraTargetPosition.position,DistanceToTarget * Time.deltaTime);
+            transform.position = Vector3.Slerp(transform.position, CameraTargetPosition.position, DistanceToTarget * Time.deltaTime * 1.5f);
         }
         else
         {

@@ -38,7 +38,11 @@ public class MovementControl : MonoBehaviour
 
     public bool MovementEnabled = true;
 
-
+    public static MovementControl instance;
+    private void Awake()
+    {
+        instance = this;
+    }
     //public bool WASDmovement;
     void Start()
     {
@@ -86,7 +90,15 @@ public class MovementControl : MonoBehaviour
 
 
             Controller.Move(move * speed * Time.deltaTime);//main movement vector
-
+            if (!Movment3D)
+            {
+                if (transform.position.z != 0)
+                {
+                    Controller.enabled = false;
+                    transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+                    Controller.enabled = true;
+                }
+            }
 
 
             if (DoubleJump)
@@ -112,6 +124,7 @@ public class MovementControl : MonoBehaviour
             {
                 if (Input.GetButtonDown("Jump") && isGrounded)
                 {
+                    AudioManager.instanse.Play("Jump");
                     velocity.y += Mathf.Sqrt(jumpHeight * -2f * gravity);
                 }
             }

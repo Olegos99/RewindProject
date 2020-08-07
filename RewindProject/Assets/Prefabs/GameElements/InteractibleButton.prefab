@@ -165,8 +165,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Background: {fileID: 8859842849373422933}
   Forground: {fileID: 11615608001576542}
-  BackgroundColor: {r: 1, g: 0, b: 0, a: 0}
-  ForgroundColor: {r: 0, g: 1, b: 0.11850643, a: 0}
 --- !u!1 &5484471862929036031
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,8 +458,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6663385449282169015}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.149}
-  m_LocalScale: {x: 0.40686, y: 0.70081633, z: 0.40686}
+  m_LocalPosition: {x: 0, y: 0, z: 0.265}
+  m_LocalScale: {x: 0.40686, y: 0.70081633, z: 0.22336614}
   m_Children:
   - {fileID: 6663385449089887438}
   m_Father: {fileID: 6663385450655866819}
@@ -573,8 +571,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.3557043, z: 1}
-  m_Center: {x: 0, y: 0.3260808, z: 0}
+  m_Size: {x: 1.4402416, y: 1.3557043, z: 1}
+  m_Center: {x: -0.02247417, y: 0.3260808, z: 0}
 --- !u!114 &6663385450655866822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,12 +586,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameObjectToActivate: {fileID: 0}
-  RewindCloneCreation: {fileID: 0}
   buttonTimeUI: {fileID: 1900004448}
   HaveActiveTimeLimit: 1
   TimeLimit: 1.5
-  PlayerCurrentlyInZone: 0
-  CloneCurrentlyInZone: 0
+  AllowPlayerReuseButtonOnCoorutineRuning: 0
+  Deactivate: 1
 --- !u!54 &6663385450655866817
 Rigidbody:
   m_ObjectHideFlags: 0

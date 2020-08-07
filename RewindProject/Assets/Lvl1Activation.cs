@@ -21,21 +21,27 @@ public class Lvl1Activation : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (Activate01)
-        //{
-        //    if (other.name == "Player" && !HintWasActivatedOnce)
-        //    {
-        //        PlayerCurrentlyInZone = true;
-        //        Boss.GetComponent<Animator>().SetTrigger("Lvl1activation01");
-        //    }
-        //}
-
-        if (Activate02)
+        if (Activate01)
         {
             if (other.name == "Player" && !WasActivatedOnce)
             {
                 PlayerCurrentlyInZone = true;
-                PauseMenu.instance.ActivateHint();
+                PauseMenu.instance.ActivateHint(0);
+                WasActivatedOnce = true;
+                //Boss.GetComponent<Animator>().SetTrigger("Lvl1activation01");
+            }
+        }
+
+        if (Activate02)
+        {
+            if (other.name == "Player")
+            {
+                Boss.GetComponent<Animator>().SetTrigger("Lvl1activation02");
+            }
+                if (other.name == "Player" && !WasActivatedOnce)
+            {
+                PlayerCurrentlyInZone = true;
+                PauseMenu.instance.ActivateHint(1);
                 Boss.GetComponent<Animator>().SetTrigger("Lvl1activation02");
                 WasActivatedOnce = true;
             }
